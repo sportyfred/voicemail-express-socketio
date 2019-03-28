@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 20px;
+  background: #fff url(../img/jazz.jpg) no-repeat;
+  background-size: cover;
+}
+
+.voicemails {
+  width: 50%;
+  margin: 10em auto;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-collapse: collapse;
+}
+.voicemails th {
+  background-color: cyan;
+}
+.voicemails th, .voicemails td {
+  border: 1px solid #333;
+  padding: .2em 1em;
+}
+
+button {
+  background-color: violet;
+  border: 1px solid #333;
+  font-family: 'Courier New', monospace;
+  font-size: 20px;
+  font-weight: bold;
+}
