@@ -16,6 +16,7 @@ const nexmo = new Nexmo({
   privateKey: __dirname + '/' + process.env.PRIVATE_KEY
 });
 
+
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
@@ -25,7 +26,7 @@ app.get('/answer', (req, res) => {
     {
       action: 'talk',
       voiceName: 'Ivy',
-      text: 'Please record your message for Garann after the beep. Press # to end.'
+      text: 'Hey say now got ohm Fred. Press # to end.'
     },
     {
       action: 'record',
@@ -36,7 +37,7 @@ app.get('/answer', (req, res) => {
     {
       action: 'talk',
       voiceName: 'Ivy',
-      text: 'Thank you, goodbye.'
+      text: 'Tack, goodbye.'
     }
   ];
   res.send(ncco);
