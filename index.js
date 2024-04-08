@@ -23,6 +23,13 @@ app.use(bodyParser.json());
 // answer calls to number linked to Nexmo app
 app.get('/answer', (req, res) => {
   const ncco = [
+    /*
+     {
+        "action": "stream",
+        "streamUrl": [
+            "https://a311-81-233-8-75.ngrok-free.app/water.wav"
+        ]
+    },*/
     {
       action: 'talk',
       voiceName: 'Ivy',
