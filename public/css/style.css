@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Courier New', monospace;
+  font-family: 'Verdana', monospace;
   font-size: 20px;
   background: #fff url(../img/jazz.jpg) no-repeat;
   background-size: cover;
@@ -25,7 +25,49 @@ body {
 button {
   background-color: violet;
   border: 1px solid #333;
-  font-family: 'Courier New', monospace;
+  font-family: 'Verdana', monospace;
   font-size: 20px;
   font-weight: bold;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+ .body
+{font-size: 40px;}
+  
+   .voicemails {
+  width: 100%;
+  margin: 2em auto;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-collapse: collapse;
+}
+button {
+  background-color: violet;
+  border: 1px solid #333;
+  font-family: 'Verdana', monospace;
+  font-size: 40px;
+  font-weight: bold;
+}
+  
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .example {background: green;}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .example {background: blue;}
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .example {background: orange;}
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .example {background: pink;}
 }
