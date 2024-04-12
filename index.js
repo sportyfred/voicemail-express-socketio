@@ -80,7 +80,7 @@ app.post('/event', (req, res) => {
 // defined in `/answer`, called when recording completed
 app.post('/voicemail', (req, res) => {
   let filename = uniqueName.uniqueNamesGenerator() + '.mp3';
-  let path = __dirname + '/public/recordings' + filename;
+  let path = __dirname + '/public/recordings/' + filename;
   nexmo.files.save(req.body.recording_url, path, (err, response) => {
     if (err) {
       res.status(500);

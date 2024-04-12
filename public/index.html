@@ -56,7 +56,7 @@
 
     socket.on('voicemail', vm => {
       rows.innerHTML += `<tr>
-          <td>${vm.date}</td>
+         <td><a href="recordings/${data}">${data}</td>
           <td><button class="play_btn" value="${vm.file}">Play</button></td>
           <td><button class="del_btn">Delete</button></td>
         </tr>`;
