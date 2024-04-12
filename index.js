@@ -103,7 +103,7 @@ app.post('/transcription', (req, res) => {
     io.emit('transcription', {
       words: req.body.channels[0].transcript.sentence,
       
-    });
+  
   });
 });
 
