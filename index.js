@@ -96,6 +96,16 @@ app.post('/voicemail', (req, res) => {
   });
 });
 
+// defined in `/answer`, called when recording completed
+app.post('/transcription', (req, res) => {
+  console.log(req.body);
+  
+    io.emit('transcription', {
+      words: req.body.channels[0].transcript.sentence,
+      
+    });
+  });
+});
 
 var walk = function (dir, action, done) {
 
