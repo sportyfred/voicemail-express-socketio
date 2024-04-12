@@ -43,7 +43,7 @@
 var myWords = ["krig","fred"]
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 10, bottom: 10, left: 10},
+var margin = {top: 10, right: 10, bottom: 0, left: 10},
     width = 450 - margin.left - margin.right,
     height = 450 - margin.top - margin.bottom;
 
@@ -62,7 +62,7 @@ var layout = d3.layout.cloud()
   .words(myWords.map(function(d) { return {text: d}; }))
   .padding(5)        //space between words
   .rotate(-45)       // rotation angle in degrees
-  .fontSize(20)      // font size of words
+  .fontSize(40)      // font size of words
   .on("end", draw);
 layout.start();
 
@@ -75,7 +75,7 @@ function draw(words) {
       .selectAll("text")
         .data(words)
       .enter().append("text")
-        .style("font-size", 20)
+        .style("font-size", 40)
         .style("fill", "#69b3a2")
         .attr("text-anchor", "middle")
         .style("font-family", "Impact")
