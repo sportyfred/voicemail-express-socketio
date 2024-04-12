@@ -172,8 +172,11 @@ var walk = function (dir, action, done) {
 io
     .on('connection', function (socket) {
         walk(rootDirectory, function (path, stat) {
-            console.log(path);
-            socket.emit('filename', path);
+            
+            let text = path;
+const split = text.split("recordings/");
+console.log(split[1]);
+            socket.emit('filename', split[1]);
         }, function (err) {
             if (err) {
                 socket.emit('error', 'Something went wrong');
