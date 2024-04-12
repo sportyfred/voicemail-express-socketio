@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Impact', monospace;
-  font-size: 1,5em;
+  font-size: 2em;
   background: #fff url(https://molnet.vercel.app/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F9ehvvzxo%2Fproduction%2F93e7f5453d2a411bac0bc8b0ed14c034afbccc5a-1920x1080.png%3Frect%3D15%2C0%2C1890%2C1080%26w%3D3500%26h%3D2000%26fit%3Dcrop%26auto%3Dformat&w=1200&q=75) 
   no-repeat;
   background-size: cover;
@@ -10,7 +10,7 @@ body {
 
 .voicemails {
   width: 90%;
-  margin: 1em auto;
+  margin: auto auto;
   background-color: #fff;
   border: 1px solid #333;
   border-collapse: collapse;
