@@ -39,7 +39,16 @@ app.get('/answer', (req, res) => {
       action: 'record',
       eventUrl: [process.env.URL + '/voicemail'],
       endOnKey: '#',
-      beepStart: true
+      beepStart: true,
+     "transcription":
+        {
+            "eventMethod": "POST",
+            "eventUrl":[process.env.URL + '/transcription'],
+            "language": "sv-SE",
+            "sentimentAnalysis": "true"
+        }
+    
+
     },
     {
       action: 'talk',
