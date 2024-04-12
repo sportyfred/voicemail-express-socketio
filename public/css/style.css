@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Verdana', monospace;
-  font-size: 3em;
+  font-size: 1em;
   background: #fff url(../img/jazz.jpg) no-repeat;
   background-size: cover;
 }
@@ -26,7 +26,7 @@ button {
   background-color: violet;
   border: 1px solid #333;
   font-family: 'Verdana', monospace;
-  font-size: 3em;
+  font-size: 1em;
   font-weight: bold;
 }
 
