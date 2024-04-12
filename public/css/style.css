@@ -1,16 +1,16 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Verdana', monospace;
-  font-size: 2em;
+  font-family: 'Impact', monospace;
+  font-size: 1,5em;
   background: #fff url(https://molnet.vercel.app/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2F9ehvvzxo%2Fproduction%2F93e7f5453d2a411bac0bc8b0ed14c034afbccc5a-1920x1080.png%3Frect%3D15%2C0%2C1890%2C1080%26w%3D3500%26h%3D2000%26fit%3Dcrop%26auto%3Dformat&w=1200&q=75) 
   no-repeat;
   background-size: cover;
 }
 
 .voicemails {
-  width: 100%;
-  margin: 1em auto;
+  width: 90%;
+  margin: 5em auto;
   background-color: #fff;
   border: 1px solid #333;
   border-collapse: collapse;
@@ -20,14 +20,14 @@ body {
 }
 .voicemails th, .voicemails td {
   border: 1px solid #333;
-  padding: .2em 1em;
+  padding: .2em 0.4em;
 }
 
 button {
   background-color: violet;
   border: 1px solid #333;
-  font-family: 'Verdana', monospace;
-  font-size: 1,5em;
+  font-family: 'Impact', monospace;
+  font-size: 2em;
   font-weight: bold;
 }
 
