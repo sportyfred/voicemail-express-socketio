@@ -45,6 +45,10 @@
     };
 
     const socket = io();
+     socket.on('filename', function (data) {
+        console.log(data);
+    });
+     
     socket.on('voicemail', vm => {
       rows.innerHTML += `<tr>
           <td>${vm.date}</td>
