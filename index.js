@@ -23,29 +23,34 @@ app.use(bodyParser.json());
 // answer calls to number linked to Nexmo app
 app.get('/answer', (req, res) => {
   const ncco = [
-    /*
+    
      {
         "action": "stream",
         "streamUrl": [
-            "https://a311-81-233-8-75.ngrok-free.app/water.wav"
+            "https://8f5d-81-233-8-75.ngrok-free.app/water.wav"
         ]
-    },*/
-    {
-      action: 'talk',
-      voiceName: 'Ivy',
-      text: 'Hey say now got ohm Fred. Press # to end.'
     },
+      {
+    "action": "talk",
+    "text": "Hej. Säg något om fred. Avsluta med fyrkant",
+    "language": "sv-SE",
+    "style": 5,
+        "premium": true
+  },
+  
     {
       action: 'record',
       eventUrl: [process.env.URL + '/voicemail'],
       endOnKey: '#',
       beepStart: true
     },
-    {
-      action: 'talk',
-      voiceName: 'Ivy',
-      text: 'Tack, goodbye.'
-    }
+       {
+    "action": "talk",
+    "text": "Tack. piis aut",
+    "language": "sv-SE",
+    "style": 5,
+        "premium": true
+  },
   ];
   res.send(ncco);
 });
@@ -65,6 +70,7 @@ app.post('/voicemail', (req, res) => {
       return console.error(err);
     }
     io.emit('voicemail', {
+     
       date: req.body.start_time,
       file: filename
     });

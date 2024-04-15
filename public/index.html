@@ -32,20 +32,19 @@
     const audio = document.querySelector('audio');
 
     document.onclick = function(e) {
+      console.log('click');
       let el = e.target;
       // play voicemail
       if (el.className === 'play_btn') {
         audio.src = el.value;
         audio.play();
       }
-      //delete from UI
-      if (el.className === 'del_btn') {
-        el.closest('tr').remove();
-      }
+      //delete from UI   if (el.className === 'del_btn') { el.closest('tr').remove();  }
     };
 
     const socket = io();
     socket.on('voicemail', vm => {
+      console.log('voicemail');
       rows.innerHTML += `<tr>
           <td>${vm.date}</td>
           <td><button class="play_btn" value="${vm.file}">Play</button></td>
