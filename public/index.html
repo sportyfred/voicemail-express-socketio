@@ -40,7 +40,7 @@
   <script>
 
 // List of words
-var myWords = ["krig","fred"]
+var myWords = ["fred","fred","fred","fred","fred","fred"]
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 0, left: 10},
@@ -95,14 +95,15 @@ function draw(words) {
       let el = e.target;
       // play voicemail
       if (el.className === 'play_btn') {
-        audio.src = el.value;
+        audio.src = 'recordings/' + el.value;
         audio.play();
       }
-      //delete from UI   if (el.className === 'del_btn') { el.closest('tr').remove();  }
+    if (el.className === 'del_btn') { el.closest('tr').remove();  }
     };
 
     const socket = io();
      socket.on('filename', function (data) {
+        rows.innerHTML == '';
        rows.innerHTML += `<tr>
           <td><a href="recordings/${data}">${data}</td>
           <td><button class="play_btn" value="${data}">Play</button></td>
@@ -113,11 +114,7 @@ function draw(words) {
 
     socket.on('voicemail', vm => {
       console.log('voicemail');
-      rows.innerHTML += `<tr>
-         <td><a href="recordings/${vm.date}">${vm.date}</td>
-          <td><button class="play_btn" value="${vm.file}">Play</button></td>
-          <td><button class="del_btn">Delete</button></td>
-        </tr>`;
+     
     });
   </script>
 </html>
