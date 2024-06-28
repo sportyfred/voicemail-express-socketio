@@ -6,15 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
-        },
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "array-to-txt-file": "^1.0.2",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "fs": "^0.0.1-security",
     "nexmo": "^2.4.3-beta-1",
+    "readar": "^1.0.1",
     "socket.io": "^2.2.0",
     "unique-names-generator": "^2.0.1"
   }

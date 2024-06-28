@@ -16,7 +16,14 @@ body {
   background-position: center; 
   background-attachment: fixed;
 }
-
+ header {
+        margin: 0;
+        padding: 0;
+        /* Set the height of the header to 100% of the viewport height */
+        text-align: center;
+        background-color: #f2f2f2;
+      }
+      #my_dataviz {position: fixed;}
 
 .voicemails {
   width: 90%;

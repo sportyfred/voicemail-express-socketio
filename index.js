@@ -1,4 +1,5 @@
 require('dotenv').config();
+const readar = require('readar');
 
 
    
@@ -9,6 +10,89 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
+const arrayToTxtFile = require('array-to-txt-file')
+var result = []
+const tra = []
+const trans ={
+  "ver": "1.0.19",
+  "request_id": "6226182254ce513117079b58",
+  "channels": [
+    {
+      "transcript": [
+        {
+          "sentence": "Transcription example test.",
+          "timestamp": 9630,
+          "duration": 2642,
+          "action_items": [],
+          "questions": [],
+          "answers": [],
+          "raw_sentence": "transcription example test",
+          "words": [
+            {
+              "word": "transcription",
+              "start_time": 9630,
+              "end_time": 10887,
+              "confidence": 1
+            },
+            {
+              "word": "example",
+              "start_time": 10952,
+              "end_time": 11726,
+              "confidence": 0.990055
+            },
+            {
+              "word": "test",
+              "start_time": 11728,
+              "end_time": 12272,
+              "confidence": 0.486845
+            }
+          ],
+          "sentiments": [
+            {
+              "text_part": "transcription example test",
+              "score": 0.1213
+            }
+          ]
+        },
+        {
+          "sentence": "muy bien master.",
+          "timestamp": 9630,
+          "duration": 2642,
+          "action_items": [],
+          "questions": [],
+          "answers": [],
+          "raw_sentence": "transcription example test",
+          "words": [
+            {
+              "word": "transcription",
+              "start_time": 9630,
+              "end_time": 10887,
+              "confidence": 1
+            },
+            {
+              "word": "example",
+              "start_time": 10952,
+              "end_time": 11726,
+              "confidence": 0.990055
+            },
+            {
+              "word": "test",
+              "start_time": 11728,
+              "end_time": 12272,
+              "confidence": 0.486845
+            }
+          ],
+          "sentiments": [
+            {
+              "text_part": "transcription example test",
+              "score": 0.1213
+            }
+          ]
+        }
+      ],
+      "duration": 16.2
+    }
+  ]}
 
 
 
@@ -17,7 +101,7 @@ const uniqueName = require('unique-names-generator');
 
  const fs = require('fs')
  const rootDirectory = (__dirname + '/public/recordings')
-
+const textDirectory = (__dirname + '/public/transcriptions')
     recursivelyReadDirectory = function (rootDirectory) {
         // TODO
     };
@@ -30,6 +114,22 @@ const nexmo = new Nexmo({
   privateKey: process.env.PRIVATE_KEY
 });
 
+
+  console.log(trans['channels'][0]['transcript'])
+
+
+ const tfilename = uniqueName.uniqueNamesGenerator() + '.txt';
+
+
+arrayToTxtFile(trans['channels'][0]['transcript'], './public/transcriptions/' + 'test.txt', err => {
+    if(err) {
+      console.error(err)
+      return
+    }
+    console.log('Successfully wrote to txt file')
+})
+
+ console.log(readar('./public/transcriptions/test.txt'))
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -109,7 +209,7 @@ app.post('/transcription', (req, res) => {
   console.log(req.body);
   
     io.emit('transcription', {
-      words: req.body.channels[0].transcript.sentence,
+     
       
   
   });
@@ -205,6 +305,8 @@ console.log(split[1]);
                 socket.emit('done');
             }
         });
+
+       
     });
 
 http.listen(port);
