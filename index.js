@@ -191,12 +191,7 @@ app.post('/voicemail', (req, res) => {
       res.status(500);
       return console.error(err);
     }
-    io.emit('voicemail', {
-     
-      date: req.body.start_time,
-      file: filename,
-      url: req.body.recording_url,
-    });
+    io.emit('filename', filename);
   });
 });
 
@@ -216,12 +211,18 @@ fs.writeFile('./public/transcriptions/'+tfilename, JSON.stringify(req.body, null
 });
 
 
+const meningar = []
+
+var array = req.body;
+
+for (i in array['channels'][0]['transcript']){
+meningar[i] = (array['channels'][0]['transcript'][i]['raw_sentence'])
+
+
+        }
+        console.log(meningar)
+    io.emit('textfilename',meningar)
   
-    io.emit('transcription', {
-     
-      
-  
-  });
 });
 
 var walk = function (dir, action, done) {
