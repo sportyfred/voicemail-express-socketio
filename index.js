@@ -166,10 +166,8 @@ app.get('/answer', (req, res) => {
 });
 
 
-   let tfilename = uniqueName.uniqueNamesGenerator() + '.json';
-
-
-fs.writeFile('./public/transcriptions/'+tfilename, JSON.stringify(trans, null, 2), (error) => {
+  
+fs.writeFile('./public/transcriptions/test.json', JSON.stringify(trans, null, 2), (error) => {
   if (error) {
     console.log('An error has occurred ', error);
     return;
