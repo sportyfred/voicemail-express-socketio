@@ -183,9 +183,10 @@ app.post('/event', (req, res) => {
 
 // defined in `/answer`, called when recording completed
 app.post('/voicemail', (req, res) => {
-  console.log(req.body);
+  console.log('voicemail'+req.body);
   let filename = req.body.start_time + uniqueName.uniqueNamesGenerator() + '.mp3';
-  let path = __dirname + '/public/recordings/' + filename;
+  let path = './public/recordings/' + filename;
+  console.log('path'+path);
   nexmo.files.save(req.body.recording_url, path, (err, response) => {
     if (err) {
       res.status(500);
@@ -198,7 +199,7 @@ app.post('/voicemail', (req, res) => {
 
 // defined in `/answer`, called when recording completed
 app.post('/transcription', (req, res) => {
-  console.log(req.body);
+  console.log('transcription:'+req.body);
 
    let tfilename = uniqueName.uniqueNamesGenerator() + '.json';
 
@@ -208,7 +209,7 @@ fs.writeFile('./public/transcriptions/'+tfilename, JSON.stringify(req.body, null
     console.log('An error has occurred ', error);
     return;
   }
-  console.log('Data written successfully to disk');
+  console.log('JSON written successfully to disk');
 });
 
 
