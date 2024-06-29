@@ -166,14 +166,6 @@ app.get('/answer', (req, res) => {
 });
 
 
-  
-fs.writeFile('./public/transcriptions/test.json', JSON.stringify(trans, null, 2), (error) => {
-  if (error) {
-    console.log('An error has occurred ', error);
-    return;
-  }
-  console.log('Data written successfully to disk');
-});
 
 
 // events from Nexmo app
@@ -205,7 +197,7 @@ app.post('/transcription', (req, res) => {
    let tfilename = uniqueName.uniqueNamesGenerator() + '.json';
 
 
-fs.writeFile(__dirname + '/public/transcriptions/'+tfilename, JSON.stringify(req.body, null, 2), (error) => {
+fs.writeFile('./public/transcriptions/'+tfilename, JSON.stringify(req.body, null, 2), (error) => {
   if (error) {
     console.log('An error has occurred ', error);
     return;
