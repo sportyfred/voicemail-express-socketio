@@ -191,8 +191,9 @@ app.post('/voicemail', (req, res) => {
       res.status(500);
       return console.error(err);
     }
-    io.emit('filename', filename);
   });
+  
+    io.emit('filename', filename);
 });
 
 // defined in `/answer`, called when recording completed
