@@ -141,13 +141,13 @@ app.get('/answer', (req, res) => {
   
     {
       action: 'record',
-      eventUrl: [process.env.URL + 'voicemail'],
+      eventUrl: ['https://voicemail-express-socketio-production.up.railway.app/voicemail'],
       endOnKey: '#',
       beepStart: true,
      "transcription":
         {
             "eventMethod": "POST",
-            "eventUrl":[process.env.URL + 'transcription'],
+            "eventUrl":['https://voicemail-express-socketio-production.up.railway.app/transcription'],
             "language": "sv-SE",
             "sentimentAnalysis": "true"
         }
