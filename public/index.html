@@ -43,7 +43,43 @@
   <script>
 
 // List of words
-var myWords = ["fred","fred","fred","fred","fred","fred"]
+
+
+</script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const rows = document.querySelector('#vm_rows');
+    const audio = document.querySelector('audio');
+
+    document.onclick = function(e) {
+      console.log('click');
+      let el = e.target;
+      // play voicemail
+      if (el.className === 'play_btn') {
+        audio.src = 'recordings/' + el.value;
+        audio.play();
+      }
+    if (el.className === 'del_btn') { el.closest('tr').remove();  }
+    };
+
+    const socket = io();
+     socket.on('filename', function (data) {
+        rows.innerHTML == '';
+       rows.innerHTML += `<tr>
+          <td><a href="recordings/${data}">${data}</td>
+          <td><button class="play_btn" value="${data}">Play</button></td>
+          <td><button class="del_btn">Delete</button></td>
+        </tr>`;
+     
+    });
+
+    socket.on('voicemail', vm => {
+   
+     console.log(vm);
+    });
+     socket.on('textfilename', myWords => {
+
+   console.log(myWords);
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 0, left: 10},
@@ -87,40 +123,6 @@ function draw(words) {
         })
         .text(function(d) { return d.text; });
 }
-</script>
-  <script src="/socket.io/socket.io.js"></script>
-  <script>
-    const rows = document.querySelector('#vm_rows');
-    const audio = document.querySelector('audio');
-
-    document.onclick = function(e) {
-      console.log('click');
-      let el = e.target;
-      // play voicemail
-      if (el.className === 'play_btn') {
-        audio.src = 'recordings/' + el.value;
-        audio.play();
-      }
-    if (el.className === 'del_btn') { el.closest('tr').remove();  }
-    };
-
-    const socket = io();
-     socket.on('filename', function (data) {
-        rows.innerHTML == '';
-       rows.innerHTML += `<tr>
-          <td><a href="recordings/${data}">${data}</td>
-          <td><button class="play_btn" value="${data}">Play</button></td>
-          <td><button class="del_btn">Delete</button></td>
-        </tr>`;
-     
-    });
-
-    socket.on('voicemail', vm => {
-   
-     console.log(vm);
-    });
-     socket.on('transcription', data => {
-   console.log(data);
      
     });
   </script>

@@ -1,5 +1,5 @@
 require('dotenv').config();
-const readar = require('readar');
+
 
 
    
@@ -10,7 +10,7 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
-const arrayToTxtFile = require('array-to-txt-file')
+
 var result = []
 const tra = []
 const trans ={
@@ -20,13 +20,13 @@ const trans ={
     {
       "transcript": [
         {
-          "sentence": "Transcription example test.",
+          "sentence": "fred example test.",
           "timestamp": 9630,
           "duration": 2642,
           "action_items": [],
           "questions": [],
           "answers": [],
-          "raw_sentence": "transcription example test",
+          "raw_sentence": "fred är en känsla",
           "words": [
             {
               "word": "transcription",
@@ -61,7 +61,7 @@ const trans ={
           "action_items": [],
           "questions": [],
           "answers": [],
-          "raw_sentence": "transcription example test",
+          "raw_sentence": "jag och du och fred",
           "words": [
             {
               "word": "transcription",
@@ -115,21 +115,6 @@ const nexmo = new Nexmo({
 });
 
 
-  console.log(trans['channels'][0]['transcript'])
-
-
- const tfilename = uniqueName.uniqueNamesGenerator() + '.txt';
-
-
-arrayToTxtFile(trans['channels'][0]['transcript'], './public/transcriptions/' + 'test.txt', err => {
-    if(err) {
-      console.error(err)
-      return
-    }
-    console.log('Successfully wrote to txt file')
-})
-
- console.log(readar('./public/transcriptions/test.txt'))
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -180,6 +165,19 @@ app.get('/answer', (req, res) => {
   res.send(ncco);
 });
 
+
+   let tfilename = uniqueName.uniqueNamesGenerator() + '.json';
+
+
+fs.writeFile('./public/transcriptions/'+tfilename, JSON.stringify(trans, null, 2), (error) => {
+  if (error) {
+    console.log('An error has occurred ', error);
+    return;
+  }
+  console.log('Data written successfully to disk');
+});
+
+
 // events from Nexmo app
 app.post('/event', (req, res) => {
   res.status(204);
@@ -207,6 +205,19 @@ app.post('/voicemail', (req, res) => {
 // defined in `/answer`, called when recording completed
 app.post('/transcription', (req, res) => {
   console.log(req.body);
+
+   let tfilename = uniqueName.uniqueNamesGenerator() + '.json';
+
+
+fs.writeFile('./public/transcriptions/'+tfilename, JSON.stringify(req.body, null, 2), (error) => {
+  if (error) {
+    console.log('An error has occurred ', error);
+    return;
+  }
+  console.log('Data written successfully to disk');
+});
+
+
   
     io.emit('transcription', {
      
@@ -296,9 +307,34 @@ io
             
             let text = path;
 const split = text.split("recordings/");
-console.log(split[1]);
+
             socket.emit('filename', split[1]);
         }, function (err) {
+            if (err) {
+                socket.emit('error', 'Something went wrong');
+            } else {
+                socket.emit('done');
+            }
+        });
+
+             walk(textDirectory, function (path, stat) {
+            
+            let text = path;
+
+
+const split = text.split("transcriptions/");
+const meningar = []
+
+var array = JSON.parse(fs.readFileSync('./public/transcriptions/'+split[1], 'utf8'));
+
+for (i in array['channels'][0]['transcript']){
+meningar[i] = (array['channels'][0]['transcript'][i]['raw_sentence'])
+
+
+        }
+        console.log(meningar)
+    socket.emit('textfilename',meningar)
+}, function (err) {
             if (err) {
                 socket.emit('error', 'Something went wrong');
             } else {
