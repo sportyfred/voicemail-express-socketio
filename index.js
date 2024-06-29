@@ -126,7 +126,7 @@ app.get('/answer', (req, res) => {
      {
         "action": "stream",
         "streamUrl": [
-            "https://8f5d-81-233-8-75.ngrok-free.app/water.wav"
+            "https://voicemail-express-socketio-production.up.railway.app/water.wav"
         ]
 
     },
@@ -141,13 +141,13 @@ app.get('/answer', (req, res) => {
   
     {
       action: 'record',
-      eventUrl: [process.env.URL + '/voicemail'],
+      eventUrl: [process.env.URL + 'voicemail'],
       endOnKey: '#',
       beepStart: true,
      "transcription":
         {
             "eventMethod": "POST",
-            "eventUrl":[process.env.URL + '/transcription'],
+            "eventUrl":[process.env.URL + 'transcription'],
             "language": "sv-SE",
             "sentimentAnalysis": "true"
         }
