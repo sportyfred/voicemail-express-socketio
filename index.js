@@ -195,14 +195,23 @@ app.post('/voicemail', (req, res) => {
     return console.log('success write file')
   });
 
-  
+    io.emit('voicemail', filename);
 });
 
 // defined in `/answer`, called when recording completed
 app.post('/transcription', (req, res) => {
   console.log('transcription:'+req.body);
 
-   
+   let tfilename = uniqueName.uniqueNamesGenerator() + '.json';
+
+
+fs.writeFile(__dirname + '/transcriptions/'+tfilename, JSON.stringify(req.body, null, 2), (error) => {
+  if (error) {
+    console.log('An error has occurred ', error);
+    return;
+  }
+  console.log('JSON written successfully to disk');
+});
 
 
 const meningar2 = []
