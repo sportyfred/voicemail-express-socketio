@@ -77,8 +77,13 @@
 
     socket.on('voicemail', vm => {
    
-     console.log(vm);
+     console.log('voicemail'+vm);
     });
+
+     socket.on('textfilename2', myWords => {
+
+   console.log(myWords);
+ }
      socket.on('textfilename', myWords => {
 
    console.log(myWords);
