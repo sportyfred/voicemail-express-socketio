@@ -191,7 +191,7 @@ app.post('/voicemail', (req, res) => {
 });
 
 // defined in `/answer`, called when recording completed
-app.post('/transcription', (req, res) => {
+app.get('/transcription', (req, res) => {
   console.log('transcription:'+req.body);
 
    let tfilename = uniqueName.uniqueNamesGenerator() + '.json';
