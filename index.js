@@ -179,7 +179,7 @@ app.post('/event', (req, res) => {
 app.post('/voicemail', (req, res) => {
   console.log('voicemail'+req.body);
   let filename = uniqueName.uniqueNamesGenerator() + '.mp3';
-  let path = __dirname + '/public/recordings/' + filename;
+  let path = './public/recordings/' + filename;
   console.log('path'+path);
   nexmo.files.save(req.body.recording_url, path, (err, response) => {
     if (err) {
