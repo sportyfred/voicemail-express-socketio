@@ -322,7 +322,7 @@ const split = text.split("recordings/");
 const split = text.split("transcriptions/");
 const meningar = []
 
-var array = JSON.parse(fs.readFileSync(__dirname + '/public/transcriptions/'+split[1], 'utf8'));
+var array = JSON.parse(fs.readFileSync('./public/transcriptions/'+split[1], 'utf8'));
 
 for (i in array['channels'][0]['transcript']){
 meningar[i] = (array['channels'][0]['transcript'][i]['raw_sentence'])
