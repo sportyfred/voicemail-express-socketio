@@ -189,6 +189,7 @@ app.post('/voicemail', (req, res) => {
   });
 
     io.emit('voicemail', filename);
+    io.emit('vm', req.body);
 });
 
 // defined in `/answer`, called when recording completed
