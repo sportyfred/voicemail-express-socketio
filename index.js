@@ -100,7 +100,7 @@ const bodyParser = require('body-parser');
 const uniqueName = require('unique-names-generator');
 
  const fs = require('fs')
- const rootDirectory = (__dirname + '/app/public/recordings')
+ const rootDirectory = (__dirname + '/public/recordings')
 const textDirectory = (__dirname + '/public/transcriptions')
     recursivelyReadDirectory = function (rootDirectory) {
         // TODO
@@ -172,13 +172,13 @@ app.get('/answer', (req, res) => {
 app.post('/event', (req, res) => {
   res.status(204);
   console.log(req.body);
-  console.log(req.body.transcription_url);
+  
 });
 
 // defined in `/answer`, called when recording completed
 app.post('/voicemail', (req, res) => {
   console.log('voicemail'+req.body);
-  let filename = req.body.start_time + '.mp3';
+  let filename = uniqueName.uniqueNamesGenerator() + '.mp3';
   let path = __dirname + '/public/recordings/' + filename;
   console.log('path'+path);
   nexmo.files.save(req.body.recording_url, path, (err, response) => {
