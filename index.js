@@ -171,6 +171,7 @@ app.get('/answer', (req, res) => {
 // events from Nexmo app
 app.post('/event', (req, res) => {
   res.status(204);
+  console.log(req.body);
 });
 
 // defined in `/answer`, called when recording completed
@@ -191,7 +192,7 @@ app.post('/voicemail', (req, res) => {
 });
 
 // defined in `/answer`, called when recording completed
-app.get('/transcription', (req, res) => {
+app.post('/transcription', (req, res) => {
   console.log('transcription:'+req.body);
 
    let tfilename = uniqueName.uniqueNamesGenerator() + '.json';
