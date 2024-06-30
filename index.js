@@ -100,7 +100,7 @@ const bodyParser = require('body-parser');
 const uniqueName = require('unique-names-generator');
 
  const fs = require('fs')
- const rootDirectory = (__dirname + '/recordings')
+ const rootDirectory = (__dirname + '/public/recordings')
 const textDirectory = (__dirname + '/public/transcriptions')
     recursivelyReadDirectory = function (rootDirectory) {
         // TODO
