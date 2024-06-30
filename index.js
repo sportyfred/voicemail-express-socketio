@@ -100,7 +100,7 @@ const bodyParser = require('body-parser');
 const uniqueName = require('unique-names-generator');
 
  const fs = require('fs')
- const rootDirectory = (__dirname + '/public/recordings')
+ const rootDirectory = (__dirname + '/app/public/recordings')
 const textDirectory = (__dirname + '/public/transcriptions')
     recursivelyReadDirectory = function (rootDirectory) {
         // TODO
@@ -172,6 +172,7 @@ app.get('/answer', (req, res) => {
 app.post('/event', (req, res) => {
   res.status(204);
   console.log(req.body);
+  console.log(req.body.transcription_url);
 });
 
 // defined in `/answer`, called when recording completed
