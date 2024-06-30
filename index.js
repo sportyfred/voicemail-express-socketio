@@ -100,7 +100,7 @@ const bodyParser = require('body-parser');
 const uniqueName = require('unique-names-generator');
 
  const fs = require('fs')
- const rootDirectory = (__dirname + '/public/recordings')
+ const rootDirectory = (__dirname + '/recordings')
 const textDirectory = (__dirname + '/public/transcriptions')
     recursivelyReadDirectory = function (rootDirectory) {
         // TODO
@@ -146,8 +146,8 @@ app.get('/answer', (req, res) => {
       beepStart: true,
      "transcription":
         {
-            "eventMethod": "POST",
-            "eventUrl":['https://voicemail-express-socketio-production.up.railway.app/transcription'],
+            
+        
             "language": "sv-SE",
             "sentimentAnalysis": "true"
         }
@@ -156,7 +156,7 @@ app.get('/answer', (req, res) => {
     },
        {
     "action": "talk",
-    "text": "Tack. piis aut",
+    "text": "Tack. pi is aut",
     "language": "sv-SE",
     "style": 5,
         "premium": true
