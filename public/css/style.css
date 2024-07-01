@@ -64,8 +64,8 @@ button {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
  .voicemails {
-  width: 80%;
-  margin: 2em auto;
+  width: 70%;
+  margin: 1em auto;
   background-color: #fff;
   border: 1px solid #333;
   border-collapse: collapse;
@@ -75,11 +75,10 @@ button {
 }
 .voicemails th, .voicemails td {
   border: 1px solid #333;
-  padding: .2em 1em;
+  padding: .1em .5em;
 }
 button {
   background-color: lightcoral;
-  border: 1px solid #333;
   font-family: 'Impact', monospace;
   font-size: 40px;
   font-weight: bold;
