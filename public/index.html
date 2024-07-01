@@ -5,7 +5,7 @@
       <link href="css/style.css" rel="stylesheet">
       <title>Telefonsvarare</title>
        
-
+<script src="fittext.js"></script>
 <!-- Load d3.js -->
 <script src="https://d3js.org/d3.v4.js"></script>
 
@@ -24,8 +24,8 @@
     <audio>
       Sorry, your browser does not support this audio.
     </audio>
-<header>
-  <h1>Ring 076 9436095</h1></header>
+<header id="responsive_headline" class="glow">
+  Ring 076 9436095</header>
  <div id="my_dataviz"></div>
     <table class="voicemails">
       <thead>
@@ -40,7 +40,9 @@
 
       </tbody>
     </table>
-
+<script>
+  window.fitText( document.getElementById("responsive_headline") );
+</script>
   </body>
   <script>
 

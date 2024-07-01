@@ -16,14 +16,19 @@ body {
   background-position: center; 
   background-attachment: fixed;
 }
+h1 {
+
+}
  header {
         margin: 0;
         padding: 0;
+
         /* Set the height of the header to 100% of the viewport height */
         text-align: center;
-        background-color: #f2f2f2;
+      
       }
       #my_dataviz {position: fixed;}
+}
 
 .voicemails {
   width: 90%;
@@ -33,7 +38,7 @@ body {
   border-collapse: collapse;
 }
 .voicemails th {
-  background-color: cyan;
+  background-color: lightblue;
 }
 .voicemails th, .voicemails td {
   border: 1px solid #333;
@@ -41,11 +46,20 @@ body {
 }
 
 button {
-  background-color: violet;
+  background-color: lightcoral;
   border: 1px solid #333;
   font-family: 'Impact', monospace;
   font-size: 30px;
   font-weight: bold;
+}
+
+.del_btn {
+  background-color: lightcoral;
+  
+}
+.play_btn {
+  background-color: lightgreen;
+  
 }
 
 /* Extra small devices (phones, 600px and down) */
@@ -66,3 +80,20 @@ button {
 }
 } 
 
+.glow {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
