@@ -24,9 +24,12 @@
     <audio>
       Sorry, your browser does not support this audio.
     </audio>
+
 <header id="responsive_headline" class="glow">
   Ring 076 9436095</header>
- <div id="my_dataviz"></div>
+ <div style="position: absolute; 
+  width: 50%;
+  bottom: 10px;"id="my_dataviz"></div>
     <table class="voicemails">
       <thead>
         <tr><th colspan="3">Telefonsvarare</th></tr>
@@ -79,6 +82,7 @@
     });
 
     socket.on('voicemail', data => {
+       rows.innerHTML == '';
    rows.innerHTML += `<tr>
           <td><a href="recordings/${data}">${data}</td>
           <td><button class="play_btn" value="${data}">Play</button></td>
