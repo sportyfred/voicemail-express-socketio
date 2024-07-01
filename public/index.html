@@ -66,6 +66,7 @@
 
     const socket = io();
      socket.on('filename', function (data) {
+      console.log(data);
         rows.innerHTML == '';
        rows.innerHTML += `<tr>
           <td><a href="recordings/${data}">${data}</td>
@@ -75,9 +76,13 @@
      
     });
 
-    socket.on('voicemail', vm => {
-   
-     console.log('voicemail'+vm);
+    socket.on('voicemail', data => {
+   rows.innerHTML += `<tr>
+          <td><a href="recordings/${data}">${data}</td>
+          <td><button class="play_btn" value="${data}">Play</button></td>
+          <td><button class="del_btn">Delete</button></td>
+        </tr>`;
+     console.log('voicemail'+data);
     });
     socket.on('vm', vm => {
    
