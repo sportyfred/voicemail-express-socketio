@@ -66,7 +66,7 @@ app.get('/recordings', (req, res) => {
   files = files.filter((file) => {
     // check that the files are audio files
     const fileNameArr = file.split('.');
-    return fileNameArr[fileNameArr.length - 1] === 'webm';
+    return fileNameArr;
   }).map((file) => `/${file}`);
   return res.json({ success: true, files });
 });
@@ -128,10 +128,8 @@ app.post('/event', (req, res) => {
 // defined in `/answer`, called when recording completed
 app.post('/voicemail', (req, res) => {
  
-  let filename = uniqueName.uniqueNamesGenerator() + '.webm';
-  let path = __dirname + '/uploads/' + filename;
-  console.log(path);
- upload.single(req.body.recording_url, 'recording.webm');
+  let filename = uniqueName.uniqueNamesGenerator() + '.mp3';
+  let path = './uploads/' + filename;
   nexmo.files.save(req.body.recording_url, path, (err, response) => {
     if (err) {
       res.status(500);
