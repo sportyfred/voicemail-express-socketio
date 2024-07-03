@@ -1,5 +1,21 @@
 require('dotenv').config();
 
+/* eslint-disable no-console */
+const path = require('path');
+
+
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename(req, file, cb) {
+    const fileNameArr = file.originalname.split('.');
+    cb(null, `${Date.now()}.${fileNameArr[fileNameArr.length - 1]}`);
+  },
+});
+const upload = multer({ storage });
 
 
    
@@ -13,86 +29,7 @@ const port = process.env.PORT || 3000;
 
 var result = []
 const tra = []
-const trans ={
-  "ver": "1.0.19",
-  "request_id": "6226182254ce513117079b58",
-  "channels": [
-    {
-      "transcript": [
-        {
-          "sentence": "fred example test.",
-          "timestamp": 9630,
-          "duration": 2642,
-          "action_items": [],
-          "questions": [],
-          "answers": [],
-          "raw_sentence": "fred är en känsla",
-          "words": [
-            {
-              "word": "transcription",
-              "start_time": 9630,
-              "end_time": 10887,
-              "confidence": 1
-            },
-            {
-              "word": "example",
-              "start_time": 10952,
-              "end_time": 11726,
-              "confidence": 0.990055
-            },
-            {
-              "word": "test",
-              "start_time": 11728,
-              "end_time": 12272,
-              "confidence": 0.486845
-            }
-          ],
-          "sentiments": [
-            {
-              "text_part": "transcription example test",
-              "score": 0.1213
-            }
-          ]
-        },
-        {
-          "sentence": "muy bien master.",
-          "timestamp": 9630,
-          "duration": 2642,
-          "action_items": [],
-          "questions": [],
-          "answers": [],
-          "raw_sentence": "fred",
-          "words": [
-            {
-              "word": "transcription",
-              "start_time": 9630,
-              "end_time": 10887,
-              "confidence": 1
-            },
-            {
-              "word": "example",
-              "start_time": 10952,
-              "end_time": 11726,
-              "confidence": 0.990055
-            },
-            {
-              "word": "test",
-              "start_time": 11728,
-              "end_time": 12272,
-              "confidence": 0.486845
-            }
-          ],
-          "sentiments": [
-            {
-              "text_part": "transcription example test",
-              "score": 0.1213
-            }
-          ]
-        }
-      ],
-      "duration": 16.2
-    }
-  ]}
+
 
 
 
@@ -100,7 +37,7 @@ const bodyParser = require('body-parser');
 const uniqueName = require('unique-names-generator');
 
  const fs = require('fs')
- const rootDirectory = (__dirname + '/public/recordings')
+ const rootDirectory = (__dirname + '/uploads')
 const textDirectory = (__dirname + '/public/transcriptions')
     recursivelyReadDirectory = function (rootDirectory) {
         // TODO
@@ -117,7 +54,25 @@ const nexmo = new Nexmo({
 
 
 app.use(express.static('public'));
+app.use(express.static('uploads'));
 app.use(bodyParser.json());
+
+
+
+app.post('/record', upload.single('audio'), (req, res) => res.json({ success: true }));
+
+app.get('/recordings', (req, res) => {
+  let files = fs.readdirSync(path.join(__dirname, 'uploads'));
+  files = files.filter((file) => {
+    // check that the files are audio files
+    const fileNameArr = file.split('.');
+    return fileNameArr[fileNameArr.length - 1] === 'webm';
+  }).map((file) => `/${file}`);
+  return res.json({ success: true, files });
+});
+
+
+
 
 // answer calls to number linked to Nexmo app
 app.get('/answer', (req, res) => {
@@ -173,8 +128,8 @@ app.post('/event', (req, res) => {
 // defined in `/answer`, called when recording completed
 app.post('/voicemail', (req, res) => {
  
-  let filename = uniqueName.uniqueNamesGenerator() + '.mp3';
-  let path = './public/recordings/'+filename;
+  let filename = uniqueName.uniqueNamesGenerator() + '.webm';
+  let path = filename;
  
   nexmo.files.save(req.body.recording_url, path, (err, response) => {
     if (err) {
@@ -270,7 +225,7 @@ io
         walk(rootDirectory, function (path, stat) {
             
             let text = path;
-const split = text.split("recordings/");
+const split = text.split("uploads/");
 
             socket.emit('filename', split[1]);
         }, function (err) {

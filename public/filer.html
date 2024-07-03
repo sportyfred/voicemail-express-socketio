@@ -1,0 +1,145 @@
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="utf-8" />
+      <link href="css/style.css" rel="stylesheet">
+      <title>Meddelanden</title>
+       
+<script src="fittext.js"></script>
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<!-- Load d3-cloud -->
+<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+
+
+  </head>
+  <body>
+      <audio>
+      Sorry, your browser does not support this audio.
+    </audio>
+    <table class="voicemails">
+      <thead>
+        <tr><th colspan="3">Meddelanden</th></tr>
+        <tr>
+          <th>Ljud</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="vm_rows">
+
+      </tbody>
+    </table>
+<script>
+  window.fitText( document.gementById("responsive_headline") );
+</script>
+  </body>
+  <script>
+
+// List of words
+
+
+</script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const rows = document.querySelector('#vm_rows');
+    const audio = document.querySelector('audio');
+
+    document.onclick = function(e) {
+  
+      let el = e.target;
+     
+      // play voicemail
+      if (el.className === 'play_btn') {
+
+
+        audio.src = '' + el.value;
+
+        audio.play();
+      }
+    if (el.className === 'del_btn') { el.closest('tr').remove();  }
+    };
+
+    const socket = io();
+     socket.on('filename', function (data) {
+    
+  
+
+        rows.innerHTML == '';
+       rows.innerHTML += `<tr>
+          <td><a download href="${data}">${data}</td>
+          <td><button class="play_btn" value="${data}">Play</button></td>
+          <td><button class="del_btn">Delete</button></td>
+        </tr>`;
+     
+    });
+
+    socket.on('voicemail', data => {
+    
+    });
+    socket.on('vm', vm => {
+   
+     console.log('reqbody '+vm);
+    });
+
+     socket.on('textfilename2', myWords => {
+
+   console.log(myWords);
+ });
+     socket.on('textfilename', myWords => {
+
+   console.log(myWords);
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 10, bottom: 0, left: 10},
+    width = 450 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
+// Wordcloud features that are different from one word to the other must be here
+var layout = d3.layout.cloud()
+  .size([width, height])
+  .words(myWords.map(function(d) { return {text: d}; }))
+  .padding(5)        //space between words
+  .rotate(-45)       // rotation angle in degrees
+  .fontSize(40)      // font size of words
+  .on("end", draw);
+layout.start();
+
+// This function takes the output of 'layout' above and draw the words
+// Wordcloud features that are THE SAME from one word to the other can be here
+function draw(words) {
+  svg
+    .append("g")
+      .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", 40)
+        .style("fill", "#69b3a2")
+        .attr("text-anchor", "middle")
+        .style("font-family", "Impact")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+}
+     
+    });
+  </script>
+</body>
+</html>
