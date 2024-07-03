@@ -129,7 +129,8 @@ app.post('/event', (req, res) => {
 app.post('/voicemail', (req, res) => {
  
   let filename = uniqueName.uniqueNamesGenerator() + '.webm';
-  let path = './../uploads' + filename;
+  let path = __dirname + '/uploads/' + filename;
+  consolg.log(path);
  upload.single(req.body.recording_url, 'recording.webm');
   nexmo.files.save(req.body.recording_url, path, (err, response) => {
     if (err) {
