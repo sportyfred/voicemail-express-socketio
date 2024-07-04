@@ -69,7 +69,7 @@ app.get('/recordings', (req, res) => {
     // check that the files are audio files
     const fileNameArr = file.split('.');
 
-    return fileNameArr[fileNameArr.length - 1] === 'webm';
+    return fileNameArr[fileNameArr.length - 1] === 'wav';
   }).map((file) => `${file}`);
   io.emit('filename', files);
 
@@ -140,7 +140,7 @@ app.post('/voicemail', (req, res) => {
 
 let path1 = path.join(__dirname, "/uploads/");
 let date = Date.now();
-let filename = path1 + date + '.webm';
+let filename = path1 + date + '.wav';
 console.log(filename); 
 fileClient.downloadFile(
   req.body.recording_url, filename);
@@ -150,7 +150,7 @@ console.log('ues record');
   files = files.filter((file) => {
     // check that the files are audio files
     const fileNameArr = file.split('.');
-    return fileNameArr[fileNameArr.length - 1] === 'webm';
+    return fileNameArr[fileNameArr.length - 1] === 'wav';
   }).map((file) => `${file}`);
      io.emit('filename', files);
 console.log(files);
@@ -165,7 +165,7 @@ io
   files = files.filter((file) => {
     // check that the files are audio files
     const fileNameArr = file.split('.');
-    return fileNameArr[fileNameArr.length - 1] === 'webm';
+    return fileNameArr[fileNameArr.length - 1] === 'wav';
   }).map((file) => `${file}`);
 
 
