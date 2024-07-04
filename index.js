@@ -68,9 +68,12 @@ app.get('/recordings', (req, res) => {
   files = files.filter((file) => {
     // check that the files are audio files
     const fileNameArr = file.split('.');
+
     return fileNameArr[fileNameArr.length - 1] === 'webm';
   }).map((file) => `${file}`);
   io.emit('filename', files);
+
+
   return res.json({ success: true, files });
   
 });
@@ -132,7 +135,8 @@ app.post('/event', (req, res) => {
 
 // defined in `/answer`, called when recording completed
 app.post('/voicemail', (req, res) => {
-       console.log('start')
+
+
 
 let path1 = path.join(__dirname, "/uploads/");
 let date = Date.now();
