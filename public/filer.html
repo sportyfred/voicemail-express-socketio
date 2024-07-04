@@ -23,21 +23,15 @@
       <audio>
       Sorry, your browser does not support this audio.
     </audio>
+    <header id="responsive_headline" class="glow">Meddelanden</header>
     <table class="voicemails">
-      <thead>
-        <tr><th colspan="3">Meddelanden</th></tr>
-        <tr>
-          <th>Ljud</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
+     
       <tbody id="vm_rows">
 
       </tbody>
     </table>
 <script>
-  window.fitText( document.gementById("responsive_headline") );
+  window.fitText( document.getElementById("responsive_headline") );
 </script>
   </body>
   <script>
@@ -68,15 +62,19 @@
 
     const socket = io();
      socket.on('filename', function (data) {
-    
-  
-
-        rows.innerHTML == '';
-       rows.innerHTML += `<tr>
-          <td><a download href="${data}">${data}</td>
-          <td><button class="play_btn" value="${data}">Play</button></td>
+      console.log('data ' +data)
+     rows.innerHTML = '';
+  data.forEach((file) => {
+    console.log('file' +file)
+   rows.innerHTML += `<tr>
+               <td>${file}</td>
+          <td><a download href="${file}">Download</td>
+          <td><button class="play_btn" value="${file}">Play</button></td>
           <td><button class="del_btn">Delete</button></td>
         </tr>`;
+});
+
+        
      
     });
 
