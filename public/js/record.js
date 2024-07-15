@@ -24,7 +24,7 @@ function mediaRecorderStop() {
   }
   const audioElm = document.createElement('audio');
   audioElm.setAttribute('controls', ''); // add controls
-  audioBlob = new Blob(chunks, { type: 'audio/wav' });
+  audioBlob = new Blob(chunks, { type: 'audio/webm' });
   const audioURL = window.URL.createObjectURL(audioBlob);
   audioElm.src = audioURL;
   // show audio
@@ -147,7 +147,7 @@ function fetchRecordings() {
 
 function saveRecording() {
   const formData = new FormData();
-  formData.append('audio', audioBlob, 'recording.wav');
+  formData.append('audio', audioBlob, 'recording.webm');
   fetch('/record', {
     method: 'POST',
     body: formData,

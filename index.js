@@ -12,13 +12,32 @@ const storage = multer.diskStorage({
   },
   filename(req, file, cb) {
     const fileNameArr = file.originalname.split('.');
-    cb(null, `${Date.now()}.${fileNameArr[fileNameArr.length - 1]}`);
+    const fname = new Date().toJSON().replace(/:/g, "-").replace(/T/g, "_").replace(".", "-").slice(0,23);
+    cb(null, `${fname}.${fileNameArr[fileNameArr.length - 1]}`);
+
+  const inputPath = `${rootDirectory}`+'/'+fname+'.webm';
+const outputPath = `${rootDirectory}`+'/'+fname+'.wav';
+
+
+ffmpeg()
+  .input(inputPath)
+
+  .output(outputPath)
+  .on('end', () => {
+    console.log('DASH encoding complete.');
+  })
+  .on('error', (err) => {
+    console.error('Error:', err.message);
+  })
+  .run();
+
+
   },
 });
 const upload = multer({ storage });
 
 
-   
+
 
 
 const express = require('express')
@@ -47,6 +66,8 @@ const uniqueName = require('unique-names-generator');
 
  const fs = require('fs')
  const rootDirectory = (__dirname + '/uploads')
+  const rootDirectory2 = (__dirname + '/uploads/' + 'test.webm')
+  const rootDirectory3 = (__dirname + '/uploads/' + 'test.wav')
 const textDirectory = (__dirname + '/public/transcriptions')
     recursivelyReadDirectory = function (rootDirectory) {
         // TODO
@@ -133,13 +154,27 @@ app.post('/event', (req, res) => {
   
 });
 
+
+
+
+
+const ffmpegStatic = require('ffmpeg-static');
+const ffmpeg = require('fluent-ffmpeg');
+
+ffmpeg.setFfmpegPath(ffmpegStatic);
+
+
+
+
 // defined in `/answer`, called when recording completed
 app.post('/voicemail', (req, res) => {
 
 
 
 let path1 = path.join(__dirname, "/uploads/");
-let date = Date.now();
+
+let date = new Date().toJSON().replace(/:/g, "-").replace(/T/g, "_").replace(".", "-").slice(0,23);
+
 let filename = path1 + date + '.wav';
 console.log(filename); 
 fileClient.downloadFile(
