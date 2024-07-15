@@ -13,10 +13,11 @@ const storage = multer.diskStorage({
   filename(req, file, cb) {
     const fileNameArr = file.originalname.split('.');
     const fname = new Date().toJSON().replace(/:/g, "-").replace(/T/g, "_").replace(".", "-").slice(0,23);
-    cb(null, `${fname}.${fileNameArr[fileNameArr.length - 1]}`);
+const fnameweb = fname + '_web';   
+    cb(null, `${fnameweb}.${fileNameArr[fileNameArr.length - 1]}`);
 
-  const inputPath = `${rootDirectory}`+'/'+fname+'.webm';
-const outputPath = `${rootDirectory}`+'/'+fname+'.wav';
+  const inputPath = `${rootDirectory}`+'/'+fnameweb+'.webm';
+const outputPath = `${rootDirectory}`+'/'+fnameweb+'.wav';
 
 
 ffmpeg()
@@ -175,7 +176,7 @@ let path1 = path.join(__dirname, "/uploads/");
 
 let date = new Date().toJSON().replace(/:/g, "-").replace(/T/g, "_").replace(".", "-").slice(0,23);
 
-let filename = path1 + date + '.wav';
+let filename = path1 + date + '_telefon.wav';
 console.log(filename); 
 fileClient.downloadFile(
   req.body.recording_url, filename);
@@ -188,7 +189,7 @@ console.log('ues record');
     return fileNameArr[fileNameArr.length - 1] === 'wav';
   }).map((file) => `${file}`);
      io.emit('filename', files);
-console.log(files);
+
 });
 
 
