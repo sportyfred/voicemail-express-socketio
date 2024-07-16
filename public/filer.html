@@ -24,14 +24,20 @@
       Sorry, your browser does not support this audio.
     </audio>
     <header id="responsive_headline" class="glow">Meddelanden</header>
+   <div id ="middle" class="middle">
+<form id="form" action="">Lösenord: 
+      <input id="input" autocomplete="off" /><button class="play_btn">Hämta filer</button>
+    </form></div>
     <table class="voicemails">
      
       <tbody id="vm_rows">
 
       </tbody>
     </table>
+
 <script>
   window.fitText( document.getElementById("responsive_headline") );
+
 </script>
   </body>
   <script>
@@ -42,9 +48,22 @@
 </script>
   <script src="/socket.io/socket.io.js"></script>
   <script>
+
+const socket = io();
+  var form = document.getElementById('form');
+  var input = document.getElementById('input');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (input.value) {
+      socket.emit('login', input.value);
+      input.value = '';
+    }
+  });
+
     const rows = document.querySelector('#vm_rows');
     const audio = document.querySelector('audio');
-
+const middle = document.querySelector('#middle');
     document.onclick = function(e) {
   
       let el = e.target;
@@ -60,8 +79,9 @@
     if (el.className === 'del_btn') { el.closest('tr').remove();  }
     };
 
-    const socket = io();
+    
      socket.on('filename', function (data) {
+      middle.innerHTML = '';
       console.log('data ' +data)
      rows.innerHTML = '';
   data.forEach((file) => {

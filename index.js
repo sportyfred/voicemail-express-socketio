@@ -1,5 +1,9 @@
 require('dotenv').config();
 
+let urlParse = require('url');
+
+const {parse} = require('querystring');
+
 /* eslint-disable no-console */
 const path = require('path');
 
@@ -197,7 +201,12 @@ console.log('ues record');
 
 io
     .on('connection', function (socket) {
-         let files = fs.readdirSync(path.join(__dirname, 'uploads'));
+console.log('a user connected');
+        socket.on('login', (data) => {
+if (data === 'Kebab123') {
+ console.log('login great: ' + data);
+ let files = fs.readdirSync(path.join(__dirname, 'uploads'));
+        
   files = files.filter((file) => {
     // check that the files are audio files
     const fileNameArr = file.split('.');
@@ -205,9 +214,17 @@ io
   }).map((file) => `${file}`);
 
 
-console.log(files)
+
 
             socket.emit('filename', files);
+ }
+ else {
+       console.log('login no : ' + data);
+ }
+
+         
+        });
+         
         }, function (err) {
             if (err) {
                 socket.emit('error', 'Something went wrong');
