@@ -38,7 +38,7 @@ applications:
       commands:
         # The command to launch your app. If it terminates, it’s restarted immediately.
         # You can use the $PORT or the $SOCKET environment variable depending on the socket family of your upstream
-        start: "NODE_ENV=production npm start"
+        start: "NODE_ENV=npm start"
       # You can listen to a UNIX socket (unix) or a TCP port (tcp, default).
       # Whether your app should speak to the webserver via TCP or Unix socket. Defaults to tcp
       # More information: https://docs.upsun.com/create-apps/app-reference.html#where-to-listen
@@ -66,16 +66,7 @@ applications:
     # More information: https://docs.upsun.com/create-apps/app-reference.html#access
     # access:
 
-    # Variables to control the environment. More information: https://docs.upsun.com/create-apps/app-reference.html#variables
-     variables:
-       env:
-    #     # Add environment variables here that are static.
-         API_KEY: 6340ee83
-         API_SECRET: jmbE7ckZRR1nMwsC
-         APP_ID: 94194fbb-b43f-413b-b547-38daff4f80f7
-         URL: https://main-bvxea6i-stnoijo6q4cgm.eu-5.platformsh.site
-         PRIVATE_KEY: private.key
-         PORT: 3000
+    
 
     # Outbound firewall rules for the application. More information: https://docs.upsun.com/create-apps/app-reference.html#firewall
     # firewall:
