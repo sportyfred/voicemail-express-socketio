@@ -49,44 +49,16 @@ const express = require('express')
 const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 var result = []
 const tra = []
 const { FileClient } = require('@vonage/server-client');
 const fileClient = new FileClient({
-     apiKey: 6340ee83,
-  apiSecret: jmbE7ckZRR1nMwsC,
-  applicationId: 94194fbb-b43f-413b-b547-38daff4f80f7,
-  privateKey: -----BEGIN PRIVATE KEY-----
-MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCVRY9b+l+ex+TG
-0VqKDXq3rk96KDlL9zFU/TuYABXm06PKAnqk8l9COgPkkXDQlkZUUXXE4rb6GTHk
-+kzfL+hQ9Y/2OXWjkItoN2o8eiXAK5rvTCyalFsaz6ChIMk+VM0+envyqyyq9Fc4
-zGJEkhxNnnp49uxjc4cTTavt2qn1FamnFySaW8w6cwcLSt7zgBVY+y2fI0gFm3gU
-sBRaGfd+0vY9+SkNajjIS90jJ4LOCJsbNOrnTHYqE/rZpxoM5P8lMf+8M1m7cLtJ
-6HTb1fBxBPZZ+pNjRcJgOgeVS3oNLhgd6mhEjYoKPg8qtZuAn0d7YiGLzP6HvK2n
-asyCSH1lAgMBAAECggEABesVtzZC4RWL1iL2zZwIAY0nsyNlIiq3o5ozgqzkl88Z
-Io+pzS01TN4ZljZhNePymRhuhh/dbiarLVwlloCPwj+TzzwrLd3NQse8e1yPopux
-lbGveXGB+AFdA2zWJ2KCJx5nS6r9wMlvRXeh1C/DoraZCuXykv7bNcJRzsLP4Ker
-t9TL3W112OYAvyHY9XW9XTrtcPi8vEQjzIZBmHDg//sJoAFourY4R+E7oLA7Gkmc
-wNjyfdo0q8ZPQhLm7ESeg4hiw2GrpBnMHmFsRMP4yeoBzohbbqIMHx/P8GRyvHPm
-cLr+O4BymOEMJJxeaoa+Dz/vEJU6n9Zy9hzUHEWwAQKBgQDG0zMK/gSkzId9Qo8B
-23rryCPBml4KzRV589gJt0gvDE/v1fjKAMxO1Ic5J+PuN9OApIhJ2XB3PAg4mF6s
-pIs26McvxyrDAIEpbGwrtk1sU6lIwqsta4KSe6g9lqIUSO0HL7UWlzq45oIcr0dw
-51wPawNiu+ziRjWQL8mcwICWEQKBgQDAMmvu1HxZPwnMvwUnuUB4Z/wz/TnMzoGS
-jjK1pCbr/P2qNHiTIsoSfn7vdQ0jUGIfvQx1MS4IbejwFtLkCABxrd2UybhKfyEL
-syqG9edWm9JThyz/clX9VYWV9HTBGz7jtLAPxqzbQVNpukbGSzKcC4YBSIQ1SzII
-DWduOtNOFQKBgQCmbuzvaqvgeAWC6VBksaE39hVYXywRxpMPvvs9Rtt55siTb34P
-OpPL+UQoqCe4paq6qQAdMZNffDU1ivbVdffDQyBZ8lLtYWK9ljEGdlhhMbcnXS2F
-m9V1YWX4CDws1s7zkQ/5lSZm2S5ZbLBU5pa9oUr4P2+QCk2UISyXttzswQKBgARs
-5MlSAS744ZviRhcdD9v14Pu9d+g8VQVv2sEN74t9fsW9gY05vtdgLEINOuk2P5wl
-eTT1le7BwRxOGjr/6Cq16yUy49hrRvKDBJao8NOwsM4VjbawBkTYBERopYuQugj6
-Lxed5nsB7Q7BKEIGlzq6lTJQXiLwAU3oKRqDpjvlAoGAX1LkiCKkZ2dx/uRIXCJI
-y6GcdUVqcLwDRTK82ng2+er2eML0o0AHecfNL6Ti9sqstnJNe+PQtccMotrSdIRr
-6bdWabEzBfjIPkZs3NdgXE3KmbYw8MZyFQcVUZlxuTWF+ZQbjd0N9WQzHVkf3cXF
-8Yh+3Aw+mAtCTlncAMLMMTo=
------END PRIVATE KEY-----
-,
+     apiKey: process.env.API_KEY,
+  apiSecret: process.env.API_SECRET,
+  applicationId: process.env.APP_ID,
+  privateKey: process.env.PRIVATE_KEY,
 });
 
 // Save the file to a specific location
@@ -142,7 +114,7 @@ app.get('/answer', (req, res) => {
      {
         "action": "stream",
         "streamUrl": [
-            "https://main-bvxea6i-stnoijo6q4cgm.eu-5.platformsh.site/water.wav"
+            process.env.URL+"/water.wav"
         ]
 
     },
@@ -157,7 +129,7 @@ app.get('/answer', (req, res) => {
   
     {
       "action": "record",
-      "eventUrl": ["https://main-bvxea6i-stnoijo6q4cgm.eu-5.platformsh.site/voicemail"],
+      "eventUrl": [process.env.URL+"/voicemail"],
       "endOnKey": "#",
       "beepStart": "true",
  
