@@ -112,12 +112,7 @@ button {
   border: 1px solid #333;
   padding: .1em .5em;
 }
-button {
-  background-color: lightcoral;
-  font-family: 'Impact', monospace;
-  font-size: 40px;
-  font-weight: bold;
-}
+
   
 .glow {
   font-size: 100px;
