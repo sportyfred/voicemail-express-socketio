@@ -89,7 +89,8 @@ app.use(bodyParser.json());
 
 
 app.post('/record', upload.single('audio'), (req, res) => res.json({ success: true }));
-app.get('/cron', (req,res) => res.send('cronjob: true'));
+app.get('/cron', (req,res) => {
+    res.send ('cronjob: true')});
 app.get('/recordings', (req, res) => {
   let files = fs.readdirSync(path.join(__dirname, 'uploads'));
   files = files.filter((file) => {
