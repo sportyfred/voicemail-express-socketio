@@ -1,5 +1,12 @@
 require('dotenv').config();
-
+const cron = require('node-cron');
+function logMessage() {
+ console.log('Cron job executed at:', new Date().toLocaleString());
+}
+// Schedule the cron job to run every minute
+cron.schedule('14 * * * *', () => {
+ logMessage();
+});
 let urlParse = require('url');
 
 const {parse} = require('querystring');
