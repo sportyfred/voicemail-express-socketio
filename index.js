@@ -90,6 +90,7 @@ const textDirectory = (__dirname + '/public/transcriptions')
 
 app.use(express.static('public'));
 app.use(express.static('uploads'));
+app.use(express.static('__dirname'));
 app.use(bodyParser.json());
 
 
