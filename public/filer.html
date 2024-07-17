@@ -81,11 +81,14 @@ const middle = document.querySelector('#middle');
 
     
      socket.on('filename', function (data) {
+      const reversed = data.reverse();
       middle.innerHTML = '';
       console.log('data ' +data)
      rows.innerHTML = '';
-  data.forEach((file) => {
+  reversed.forEach((file) => {
     console.log('file' +file)
+
+
    rows.innerHTML += `<tr>
                <td>${file}</td>
           <td><a download href="${file}">Download</td>
