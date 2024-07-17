@@ -8,10 +8,12 @@ const recordedAudioContainer = document.getElementById('recordedAudioContainer')
 const saveAudioButton = document.getElementById('saveButton');
 const discardAudioButton = document.getElementById('discardButton');
 const recordingsContainer = document.getElementById('recordings');
-
+let splitta2 = '';
 let chunks = []; // will be used later to record audio
+
 let mediaRecorder = null; // will be used later to record audio
 let audioBlob = null; // the blob that will hold the recorded audio
+let audioURL = ''; // the blob that will hold the recorded audio
 
 function mediaRecorderDataAvailable(e) {
   chunks.push(e.data);
@@ -24,13 +26,17 @@ function mediaRecorderStop() {
   }
   const audioElm = document.createElement('audio');
   audioElm.setAttribute('controls', ''); // add controls
-  audioBlob = new Blob(chunks, { type: 'audio/webm' });
-  const audioURL = window.URL.createObjectURL(audioBlob);
+  audioBlob = new Blob(chunks, { type: mediaRecorder.mimeType });
+  audioURL = window.URL.createObjectURL(audioBlob);
+  console.log(audioBlob);
   audioElm.src = audioURL;
   // show audio
   recordedAudioContainer.insertBefore(audioElm, recordedAudioContainer.firstElementChild);
   recordedAudioContainer.classList.add('d-flex');
   recordedAudioContainer.classList.remove('d-none');
+let splitta = audioBlob.type.split('/',9);
+ splitta2 = splitta[1].split(';',2)
+
   // reset to default
   mediaRecorder = null;
   chunks = [];
@@ -128,26 +134,11 @@ download.setAttribute ('download', downloadname[1]);
   return recordingElement;
 }
 
-// fetch recordings
-function fetchRecordings() {
-  fetch('/recordings')
-    .then((response) => response.json())
-    .then((response) => {
-      if (response.success && response.files) {
-        recordingsContainer.innerHTML = ''; // remove all children
-        response.files.forEach((file) => {
-          const recordingElement = createRecordingElement(file);
-          // console.log(file, recordingElement);
-          recordingsContainer.appendChild(recordingElement);
-        });
-      }
-    })
-    .catch((err) => console.error(err));
-}
 
 function saveRecording() {
   const formData = new FormData();
-  formData.append('audio', audioBlob, 'recording.webm');
+
+  formData.append('audio', audioBlob, splitta2[0]);
   fetch('/record', {
     method: 'POST',
     body: formData,
@@ -156,7 +147,7 @@ function saveRecording() {
     .then(() => {
       alert('Din röst är skickad');
       resetRecording();
-      fetchRecordings();
+   
     })
     .catch((err) => {
       console.error(err);
@@ -176,4 +167,4 @@ function discardRecording() {
 
 discardAudioButton.addEventListener('click', discardRecording);
 
-fetchRecordings();
+

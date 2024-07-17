@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 const fnameweb = fname + '_web';   
     cb(null, `${fnameweb}.${fileNameArr[fileNameArr.length - 1]}`);
 
-  const inputPath = `${rootDirectory}`+'/'+fnameweb+'.webm';
+  const inputPath = `${rootDirectory}`+'/'+fnameweb+'.'+fileNameArr[0];
 const outputPath = `${rootDirectory}`+'/'+fnameweb+'.wav';
 
 

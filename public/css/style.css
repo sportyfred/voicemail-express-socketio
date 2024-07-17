@@ -1,7 +1,8 @@
+*{ box-sizing: border-box }
+
 html {
   height: 100%;
-}
-
+ font-size: calc(1em + 0.1vw); }
 
 body {
 
@@ -9,7 +10,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Impact', monospace;
-  font-size: 40px;
+
  }
   .middle{
     position: absolute;
@@ -19,6 +20,12 @@ body {
     margin-left: -50px;
     width: 200px;
     height: 100px;
+}
+
+.mobbe{
+ position: relative;
+  bottom: 10px;
+ 
 }
 input  {
   width: 100%;
@@ -61,15 +68,57 @@ position: sticky;
       }
       #my_dataviz {position: fixed;}
 
-
-
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #04AA6D;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
 button {
   background-color: lightcoral;
   border: 1px solid #333;
   font-family: 'Impact', monospace;
-  font-size: 50px;
+font-size: calc(1em + 1vw);
   font-weight: bold;
+
 }
+@media screen and (max-width: 768px) {
+  .mobbe{
+ position: fixed;
+  bottom: 10px;
+ 
+}
+    button {
+  background-color: lightcoral;
+  border: 1px solid #333;
+  font-family: 'Impact', monospace;
+font-size: calc(2em + 2vw);
+  font-weight: bold;
+
+}
+    .whitebox_wrapper{min-width:100%;}
+    .index_wrapper{width:100%;}
+}
+
+
+@media only screen and (min-width: 740px) {
+
+
+
+button {
+  font-size: calc(2em + 1vw);
+  background-color: lightcoral;
+  border: 1px solid #333;
+  font-family: 'Impact', monospace;
+
+  font-weight: bold;
+padding: 2px;
+}
+
 
 .del_btn {
   background-color: lightcoral;
@@ -96,8 +145,35 @@ button {
   
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+.glow {
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
+  }
+}
+
+
+  
+}
+
+
+
+
+
+
+  
+
  .voicemails {
   width: 70%;
   margin: 1em auto;
@@ -116,28 +192,6 @@ button {
   
 .glow {
   font-size: 100px;
-  color: #fff;
-  text-align: center;
-  -webkit-animation: glow 1s ease-in-out infinite alternate;
-  -moz-animation: glow 1s ease-in-out infinite alternate;
-  animation: glow 1s ease-in-out infinite alternate;
-}
-
-@-webkit-keyframes glow {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-  }
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
-  }
-}
-}
-
-
-
-
-.glow {
-  font-size: 80px;
   color: #fff;
   text-align: center;
   -webkit-animation: glow 1s ease-in-out infinite alternate;

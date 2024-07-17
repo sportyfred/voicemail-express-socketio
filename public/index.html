@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <meta charset="utf-8" />
+   
+      <meta charset="utf-8" / name="viewport" content="width=device-width, initial-scale=1">
       <link href="css/style.css" rel="stylesheet">
       <title>Telefonsvarare</title>
        
@@ -24,17 +25,15 @@
 
 <header id="responsive_headline" class="glow">
   Ring 076 9436095</header>
- <div style="position: absolute; 
-  width: 50%;
-  bottom: 10px;"id="my_dataviz"></div>
+
   
-  <div class="container">
+  <div id="container">
 
   
 
     <h1 class="text-center">eller spela in din röst här</h1>
-    <div class="record-button-container text-center mt-5">
-      <button class="bg-transparent border btn record-button rounded-circle shadow-sm text-center" id="recordButton">
+    <div class="record-button-container text-center mt-3">
+      <button class="bg-transparent border btn btn-lg record-button rounded-circle shadow-sm text-center" id="recordButton">
         <img src="/img/microphone.png" alt="Record" class="img-fluid" />
       </button>
     </div>
@@ -45,7 +44,7 @@
 
     <div class="recorded-audio-container mt-5 d-none flex-column justify-content-center align-items-center" 
       id="recordedAudioContainer">
-      <div class="actions mt-3" style="position: absolute; bottom: 10px;">
+      <div class="actions p-5 mobbe">
         <button class="btn btn-lg btn-success rounded-pill" id="saveButton">Skicka</button>
         <button class="btn btn-lg btn-danger rounded-pill" id="discardButton">Släng</button>
       </div>
