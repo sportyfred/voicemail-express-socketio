@@ -76,9 +76,10 @@ const fileClient = new FileClient({
 
 app.post('/webhook',function(req,res){
   var secret = "Kebab123";
-  if(req.body.secret == secret){
-    gad.deploy();
-  }
+  console.log(req.body)
+ // if(req.body.secret == secret){
+   // gad.deploy();
+  //}
 });
 
 
