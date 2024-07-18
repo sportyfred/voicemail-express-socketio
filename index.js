@@ -1,15 +1,13 @@
 require('dotenv').config();
-var gad = require('git-auto-deploy');
 
 
-const cron = require('node-cron');
-function logMessage() {
- console.log('Cron job executed at:', new Date().toLocaleString());
-}
+
+
+
+ 
 // Schedule the cron job to run every minute
-cron.schedule('14 * * * *', () => {
- logMessage();
-});
+
+
 let urlParse = require('url');
 
 const {parse} = require('querystring');
@@ -73,17 +71,6 @@ const fileClient = new FileClient({
 });
 
 // Save the file to a specific location
-var repo={
-  origin:"sportyfred/voicemail-express-socketio",
-  branch:"main"
-};
-app.post('/webhook',function(req,res){
-  var secret = "Kebab123";
-  console.log(req.body) 
- // if(req.body.secret == secret){
-   gad.deploy();
-  //}
-});
 
 
 const bodyParser = require('body-parser');
