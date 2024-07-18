@@ -1,4 +1,7 @@
 require('dotenv').config();
+var gad = require('git-auto-deploy');
+
+
 const cron = require('node-cron');
 function logMessage() {
  console.log('Cron job executed at:', new Date().toLocaleString());
@@ -71,7 +74,12 @@ const fileClient = new FileClient({
 
 // Save the file to a specific location
 
-
+app.post('/webhook',function(req,res){
+  var secret = "Kebab123";
+  if(req.body.secret == secret){
+    gad.deploy();
+  }
+});
 
 
 const bodyParser = require('body-parser');
