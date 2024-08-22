@@ -87,31 +87,11 @@ const textDirectory = (__dirname + '/public/transcriptions')
 
 
 
-app.use(express.static('public', {
-  setHeaders: function(res, path) {
- 
-   res.append('Access-Control-Allow-Origin', ['*']);
-    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
-
-res.set("ngrok-skip-browser-warning", true);
-res.set('Access-Control-Expose-Headers', 'ngrok-skip-browser-warning')
-
-  }
-}));
-app.use(express.static('uploads', {
-  setHeaders: function(res, path) {
-  res.append('Access-Control-Allow-Origin', ['*']);
-    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
-
-res.set("ngrok-skip-browser-warning", true);
-res.set('Access-Control-Expose-Headers', 'ngrok-skip-browser-warning')
-  }
-}));
+app.use(express.static('public'));
+app.use(express.static('uploads'));
 
 app.use(bodyParser.json());
-app.disable('etag');
+
 
 
 
