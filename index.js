@@ -134,13 +134,13 @@ app.get('/answer', (req, res) => {
     {
       "action": "record",
       "eventUrl": [process.env.URL+"/voicemail"],
-      
+            "endOnKey": "#",
  
        
     
     
 
-    }
+    },
   ];
   res.send(ncco);
 });
