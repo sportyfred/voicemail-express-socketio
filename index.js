@@ -124,18 +124,12 @@ app.get('/answer', (req, res) => {
      {
         "action": "stream",
         "streamUrl": [
-            process.env.URL+"/water.wav"
+            process.env.URL+"/Telefonsvararen.wav"
         ]
 
     },
    
-      {
-    "action": "talk",
-    "text": "Hej. Säg något om fred. Avsluta med fyrkant",
-    "language": "sv-SE",
-    "style": 5,
-        "premium": true
-  },
+     
   
     {
       "action": "record",
@@ -147,14 +141,7 @@ app.get('/answer', (req, res) => {
     
     
 
-    },
-       {
-    "action": "talk",
-    "text": "Tack. pi is aut",
-    "language": "sv-SE",
-    "style": 5,
-        "premium": true
-  },
+    }
   ];
   res.send(ncco);
 });
